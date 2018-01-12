@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SettingsControl">
+   <children>
+      <ComboBox fx:id="player1Color" layoutX="14.0" layoutY="40.0" prefWidth="150.0" promptText="PLAYER O COLOR" GridPane.columnIndex="5">
+      </ComboBox>
+      <ComboBox fx:id="boardSize" prefWidth="150.0" promptText="Board Size" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+      <ComboBox fx:id="player2Color" prefHeight="29.0" prefWidth="150.0" promptText="PLAYER X COLOR" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+      <ComboBox fx:id="whoStarts" prefWidth="150.0" promptText="Who starts" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+      <Label prefHeight="17.0" prefWidth="142.0" text="          Player O color" GridPane.columnIndex="4" />
+      <Label prefHeight="17.0" prefWidth="99.0" text="        Who Starts" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+      <Label prefHeight="17.0" prefWidth="143.0" text="         Player X color" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+      <Label prefHeight="17.0" prefWidth="131.0" text="         Board Size" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
