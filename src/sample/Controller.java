@@ -1,12 +1,8 @@
 package sample;
 
+import Resources.GameScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -28,6 +24,18 @@ public class Controller {
             messageText.setFill(Color.RED);
         }
     }*/
+    @FXML
+    protected void startGame() {
+
+        GameScene gameScene = new GameScene();
+        Stage stage = (Stage) startButton.getScene().getWindow();
+        try {
+            gameScene.start(stage);
+        } catch (Exception e) {
+
+        }
+    }
+
     @FXML
     protected void startSettings() {
 

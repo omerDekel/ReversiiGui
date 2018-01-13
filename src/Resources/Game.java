@@ -11,47 +11,52 @@ public class Game {
     private Board m_board;
 	private IDisplayer m_displayer;
 	private IRules m_rules;
+	private int current_player_index;
+	private boolean last_player_skipped ;
     Game(IPlayer player_1, IPlayer player_2, Board board,  IDisplayer displayer,  IRules rules) {
         this.m_board = board;
         this.m_displayer = displayer;
         this.m_rules = rules;
         m_players.add(player_1);
         m_players.add(player_2);
+        current_player_index = 0;
+        last_player_skipped = false;
+
     }
 
-    public void run() {
-         int current_player_index = 0;
-        boolean last_player_skipped = false;
-        for (;; current_player_index = (current_player_index + 1) % m_players.size())
-        {
+    public void run(Point point) {
+        //boolean last_player_skipped = false;
+        /*for (;; current_player_index = (current_player_index + 1) % m_players.size())
+        {*/
             IPlayer current_player = m_players.get(current_player_index);
 
 		List<Point> available_moves = m_rules.get_legal_moves(m_board, current_player.get_player_type());
             if (available_moves.isEmpty())
             {
-                if (last_player_skipped)
+                if (this.last_player_skipped)
                 {
-                    break;
+                    //break;
+                    m_displayer.display_game_over(m_rules.get_winner(m_board));
+                    m_displayer.display(m_board);
+
                 }
 
-                last_player_skipped = true;
-                continue;
+                this.last_player_skipped = true;
+                //continue;
             }
 
             m_displayer.display(m_board);
 
-            Point point;
+            //Point point;
 
-            do
+            /*do
             {
-                point = current_player.get_move(m_rules, m_board);
-            } while (available_moves.contains(point));
-
+            } while (available_moves.contains(point));*/
+            //point = current_player.get_move(m_rules, m_board);
             m_rules.make_move(m_board, point, current_player.get_player_type());
-        }
+            current_player_index = (current_player_index + 1)% m_players.size();
+        //}
 
-        m_displayer.display_game_over(m_rules.get_winner(m_board));
-        m_displayer.display(m_board);
     }
 
 }

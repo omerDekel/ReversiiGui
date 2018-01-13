@@ -25,6 +25,6 @@
             <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#startSettings" text="Settings" />
          </children>
       </HBox>
-      <Button fx:id="startButton" mnemonicParsing="false" text="Start" />
+      <Button fx:id="startButton" mnemonicParsing="false" onAction="#startGame" text="Start" />
    </children>
 </GridPane>

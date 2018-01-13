@@ -15,7 +15,7 @@ public class Reversy {
 
         Game game= new Game(player_1, player_2, board, displayer, rules);
 
-        game.run();
+        //game.run();
 
     }
 

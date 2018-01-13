@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Omer Dekel on 09/01/2018.
  */
 public class Board {
-    private ArrayList<ArrayList<PlayerTypes>> CellMatrix =  new ArrayList<ArrayList<PlayerTypes>>();;
+    private ArrayList<ArrayList<PlayerTypes>> CellMatrix =  new ArrayList();
 
     public Board(int size) {
         for (int i = 0; i < size; i++) {
