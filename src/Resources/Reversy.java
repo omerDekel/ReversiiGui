@@ -13,7 +13,7 @@ public class Reversy {
         ConsoleDisplayer displayer = new ConsoleDisplayer();
         BasicRules rules = new BasicRules();
 
-        Game game= new Game(player_1, player_2, board, displayer, rules);
+        //Game game= new Game(player_1, player_2, board, displayer, rules);
 
         //game.run();
 

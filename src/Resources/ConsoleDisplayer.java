@@ -11,7 +11,7 @@ import java.util.TreeMap;
 public class ConsoleDisplayer implements IDisplayer {
     @Override
     public void display(Board board) {
-        ArrayList<ArrayList<PlayerTypes>> cells = board.get_cells();
+        /*ArrayList<ArrayList<PlayerTypes>> cells = board.get_cells();
 	  int num_rows = board.get_num_rows();
 	  int num_cols = board.get_num_columns();
 
@@ -45,13 +45,13 @@ public class ConsoleDisplayer implements IDisplayer {
             }
             System.out.println();
             System.out.println(line_separator);
-        }
+        }*/
 
     }
 
     @Override
     public void display_game_over(PlayerTypes player) {
-        System.out.println( "    Game Over!");
+       /* System.out.println( "    Game Over!");
 
         String winner_string;
         switch (player)
@@ -68,7 +68,7 @@ public class ConsoleDisplayer implements IDisplayer {
                 winner_string = "It's a tie!";
                 break;
         }
-        System.out.println(winner_string );
+        System.out.println(winner_string );*/
 
     }
 }

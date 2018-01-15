@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
  * Created by Omer Dekel on 13/01/2018.
  */
 public class Square extends Rectangle{
-    private Point location;
+    /*private Point location;
     private GuiPlayer player;
     private Game game;
     private BoardController board;
@@ -22,5 +22,5 @@ public class Square extends Rectangle{
     }
     public void clickHandler(){
         this.game.run(location);
-    }
+    }*/
 }

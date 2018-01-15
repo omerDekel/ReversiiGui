@@ -1,6 +1,7 @@
 package Resources;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Omer Dekel on 09/01/2018.
@@ -25,4 +26,11 @@ public interface IRules {
      * @param board the board
      */
       public PlayerTypes get_winner(Board board);
+
+    /**
+     * the player scores
+     * @param board the board
+     * @return the player
+     */
+      public Map<PlayerTypes,  Integer> playerScores(Board board);
 }

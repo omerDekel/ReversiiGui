@@ -3,12 +3,14 @@ package sample;
 import Resources.GameScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Controller {
     @FXML
+    private GridPane menu;
+    @FXML
     private Button startButton;
-
     @FXML
     private Button settingsButton;
     /*@FXML
@@ -28,9 +30,17 @@ public class Controller {
     protected void startGame() {
 
         GameScene gameScene = new GameScene();
-        Stage stage = (Stage) startButton.getScene().getWindow();
+        /*            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("BoardFXML.fxml"));
+            primaryStage.setTitle("Reversi");
+            primaryStage.setScene(new Scene(root, 780, 700));
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+*/
+        Stage primaryStage = (Stage) menu.getScene().getWindow();
         try {
-            gameScene.start(stage);
+            gameScene.start(primaryStage);
         } catch (Exception e) {
 
         }
