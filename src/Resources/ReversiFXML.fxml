@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<HBox fx:id="root" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Resources.BoardController">
+<HBox fx:id="root" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Resources.BoardController">
    <children>
-      <GridPane prefHeight="90.0" prefWidth="485.0">
+      <GridPane prefHeight="90.0" prefWidth="462.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="391.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="94.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="263.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="222.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -21,7 +21,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="currentPlayer" prefHeight="17.0" prefWidth="79.0" text="current player" GridPane.columnIndex="1" />
+            <Label fx:id="currentPlayer" prefHeight="30.0" prefWidth="136.0" text="current player" GridPane.columnIndex="1" />
+            <Label fx:id="scorePlayer1" text="player 1 score" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="scorePlayer2" text="player 2 score" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="193.0" text="current player" />
+            <Label text="player 1 score" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="75.0" text="player 2 score" GridPane.rowIndex="2" />
          </children>
       </GridPane>
        <VBox spacing="30">

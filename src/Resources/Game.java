@@ -7,7 +7,8 @@ import java.util.Map;
 /**
  * Created by Omer Dekel on 09/01/2018.
  */
-public class Game {
+public class Game implements Notifier{
+    private  List<Listener> listeners = new ArrayList<>();
     private List<GuiPlayer> m_players = new ArrayList<>();
     private Board m_board;
 	private IDisplayer m_displayer;
@@ -73,6 +74,7 @@ public class Game {
                     //continue;
                     m_rules.make_move(m_board, point, current_player.get_player_type());
                     current_player_index = (current_player_index + 1) % m_players.size();
+                    Notify();
                 }
             } else {
                 if (last_player_skipped) {
@@ -109,7 +111,7 @@ public class Game {
      */
     public int GetPlayer1Score () {
     Map<PlayerTypes,  Integer> playersScores = m_rules.playerScores(m_board);
-    return playersScores.get(m_players.get(0).get_player_type());
+        return playersScores.get(m_players.get(0).get_player_type());
 }
 
     /**
@@ -121,4 +123,28 @@ public class Game {
         return playersScores.get(m_players.get(1).get_player_type());
     }
 
+    @Override
+    public void addListener(Listener l) {
+        listeners.add(l);
+    }
+
+    @Override
+    public void removeListener(Listener l) {
+
+    }
+    private void Notify() {
+                List<Listener> listeners = new ArrayList<Listener>(this.listeners);
+        // Notify all listeners about a hit event:
+        for (Listener l : listeners) {
+            l.Event(this);
+        }
+
+    }
+    public GuiPlayer CurrentPlayer() {
+        return m_players.get(current_player_index);
+    }
+
+    public List<GuiPlayer> getM_players() {
+        return m_players;
+    }
 }
