@@ -20,9 +20,11 @@ import java.util.ResourceBundle;
 import javafx.scene.paint.Color;
 
 /**
- * Created by Omer Dekel on 12/01/2018.
+ * BoardController .
+ * controlling the main board of the game .
  */
 public class BoardController implements Initializable {
+    //members .
     @FXML
     private HBox root;
     @FXML
@@ -68,6 +70,7 @@ public class BoardController implements Initializable {
      */
     public void readingSettingsFile() {
         File file = new File("settings.txt");
+        // if the file is exist we reading the settings from it and updating the members accordingly .
         if (file.exists()) {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader("settings.txt"));
@@ -96,6 +99,7 @@ public class BoardController implements Initializable {
                 player2 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X, "Black", color2);
                 System.out.println("couldnt read file");
             }
+            //if there's no file we set the members to default settings .
         } else {
             currentPlayer.setText("White");
             this.size = 8;

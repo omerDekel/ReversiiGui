@@ -7,9 +7,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- * Created by Omer Dekel on 09/01/2018.
+ * settings .
+ * running the settings choices screen.
  */
-public class Settings  extends Application {
+public class Settings extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane root = FXMLLoader.load(getClass().getClassLoader().getResource("GraphicDisplay/Sett.fxml"));

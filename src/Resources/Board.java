@@ -1,8 +1,5 @@
 package Resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static Resources.PlayerTypes.PLAYER_TYPE_O;
 import static Resources.PlayerTypes.PLAYER_TYPE_X;
 
@@ -10,7 +7,13 @@ import static Resources.PlayerTypes.PLAYER_TYPE_X;
  * Created by Omer Dekel on 09/01/2018.
  */
 public class Board {
-private PlayerTypes [][] CellMatrix;
+    private PlayerTypes[][] CellMatrix;
+
+    /**
+     * the constractor.
+     *
+     * @param size the size.
+     */
     public Board(int size) {
         CellMatrix = new PlayerTypes[size][size];
         for (int i = 0; i < size; i++) {
@@ -29,37 +32,56 @@ private PlayerTypes [][] CellMatrix;
     }
 
     /**
-     * get the cell.
+     * get_cells
      *
      * @return the cells.
      */
     PlayerTypes[][] get_cells() {
         return CellMatrix;
     }
-    public void set_cell( Point point,  PlayerTypes player)
-    {
-        if (!is_in_board(point))
-        {
+
+    public void set_cell(Point point, PlayerTypes player) {
+        if (!is_in_board(point)) {
             return;
         }
         CellMatrix[point.getX()][point.getY()] = player;
     }
 
-    public int get_num_rows()
-    {
+    /**
+     * get num rows.
+     *
+     * @return return the number of the rows.
+     */
+    public int get_num_rows() {
         return CellMatrix.length;
     }
 
-    public int get_num_columns()
-    {
-        return  CellMatrix.length;
+    /**
+     * get num columns.
+     *
+     * @return return the columns.
+     */
+    public int get_num_columns() {
+        return CellMatrix.length;
     }
 
-    public boolean is_in_board( Point point)
-    {
+    /**
+     * check if the point is in the board.
+     *
+     * @param point the point.
+     * @return return the answer.
+     */
+
+    public boolean is_in_board(Point point) {
 
         return (0 <= point.getX()) && (get_num_rows() > point.getX()) && (0 <= point.getY()) && (get_num_columns() > point.getY());
     }
+
+    /**
+     * getCell .
+     * @param point on the board .
+     * @return the value of the cell in that point .
+     */
     public PlayerTypes getCell(Point point) {
         return CellMatrix[point.getX()][point.getY()];
     }

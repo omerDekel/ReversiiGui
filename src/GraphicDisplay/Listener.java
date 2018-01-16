@@ -3,12 +3,13 @@ package GraphicDisplay;
 import Resources.Game;
 
 /**
- * Created by Omer Dekel on 15/01/2018.
+ *Listener .
+ * listener interface that listen that has been notified after move has been preformed un our game .
  */
 public interface Listener {
     /**
-     * the event
-     * @param game the game
+     * the event after move has been preformed.
+     * @param game the game .
      */
     void Event(Game game);
 }

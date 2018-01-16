@@ -1,6 +1,4 @@
 package GraphicDisplay;
-
-import Resources.Board;
 import Resources.IDisplayer;
 import Resources.PlayerTypes;
 import javafx.scene.Scene;
@@ -10,14 +8,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Created by Omer Dekel on 15/01/2018.
+ * GuiDisplayer .
  */
 public class GuiDisplayer implements IDisplayer {
-
-    @Override
-    public void display(Board board) {
-
-    }
 
     @Override
     public void display_game_over(PlayerTypes player) {
@@ -26,6 +19,7 @@ public class GuiDisplayer implements IDisplayer {
         stage.initModality(Modality.APPLICATION_MODAL);
         GridPane root = new GridPane();
         Label label = new Label();
+        // sending the message of which player won .
         switch (player)
         {
             case PLAYER_TYPE_X:

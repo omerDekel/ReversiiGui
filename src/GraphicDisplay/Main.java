@@ -6,12 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main.
+ * main of the project . runs the menu .
+ */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        primaryStage.setTitle("Reversy");
+        primaryStage.setTitle("Reversi");
         Scene scene = new Scene(root, 300, 275);
         primaryStage.setScene(scene);
         primaryStage.show();

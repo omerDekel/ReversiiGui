@@ -6,8 +6,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * Created by Omer Dekel on 12/01/2018.
-// */
+ * GameScene.
+*/
 public class GameScene{
     /**
      * start the game

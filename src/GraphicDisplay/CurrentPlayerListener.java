@@ -4,10 +4,17 @@ import Resources.Game;
 import javafx.scene.control.Label;
 
 /**
- * Created by Omer Dekel on 15/01/2018.
+ * CurrentPlayerListener.
+ * listener that responsible on the current player label .
  */
 public class CurrentPlayerListener implements Listener {
+    //member .
     private Label currentPlayer;
+
+    /**
+     * constructor.
+     * @param label of the current player .
+     */
     public CurrentPlayerListener(Label label) {
         this.currentPlayer = label;
     }

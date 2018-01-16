@@ -132,11 +132,6 @@ public class Game implements Notifier {
         listeners.add(l);
     }
 
-    @Override
-    public void removeListener(Listener l) {
-
-    }
-
     /**
      * notify
      */

@@ -14,13 +14,23 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 
 /**
- * Created by Omer Dekel on 13/01/2018.
+ * GuiBoard.
+ * the board which we play the game on it .
  */
 public class GuiBoard extends GridPane {
+    // members .
     private Color player1Color;
     private Color player2Color;
     private Board board;
     private Game m_game;
+
+    /**
+     * constructor .
+     * @param board the basic board of the game .
+     * @param game the class that responsible to run the game on the board .
+     * @param color1 color of player 1 .
+     * @param color2 color of player 2.
+     */
     GuiBoard(Board board, Game game, Color color1, Color color2) {
         this.player1Color = color1;
         this.player2Color = color2;
@@ -40,6 +50,7 @@ public class GuiBoard extends GridPane {
 
     /**
      * getting the board
+     *
      * @return the board
      */
     public Board getBoard() {
@@ -77,10 +88,12 @@ public class GuiBoard extends GridPane {
                     stackPane.getChildren().add(circle);
                 }
                 this.add(stackPane, j, i);
-                final int fi = i ;
-                final int fj =  j;
+                final int fi = i;
+                final int fj = j;
                 Point p = new Point(fi, fj);
-                stackPane.setOnMouseClicked(event -> {this.clickHandler(p);});
+                stackPane.setOnMouseClicked(event -> {
+                    this.clickHandler(p);
+                });
 
             }
         }
@@ -88,6 +101,7 @@ public class GuiBoard extends GridPane {
 
     /**
      * click handle of the game
+     *
      * @param location the point
      */
     public void clickHandler(Point location) {

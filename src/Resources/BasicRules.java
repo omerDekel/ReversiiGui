@@ -1,13 +1,11 @@
 package Resources;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by Omer Dekel on 09/01/2018.
+ * BasicRules.
  */
 public class BasicRules implements IRules {
     @Override
@@ -16,17 +14,13 @@ public class BasicRules implements IRules {
         int num_columns = board.get_num_columns();
         ArrayList<Point> legal_moves = new ArrayList<>();
 
-        for ( int i = 0; i < num_rows; i++)
-        {
-            for ( int j = 0; j < num_columns; j++)
-            {
-                if (PlayerTypes.PLAYER_TYPE_NONE != board.getCell(new Point(i,j)))
-                {
+        for (int i = 0; i < num_rows; i++) {
+            for (int j = 0; j < num_columns; j++) {
+                if (PlayerTypes.PLAYER_TYPE_NONE != board.getCell(new Point(i, j))) {
                     continue;
                 }
-               Point point = new Point (i, j);
-                if (!get_flipping_cells(board, point, player).isEmpty())
-                {
+                Point point = new Point(i, j);
+                if (!get_flipping_cells(board, point, player).isEmpty()) {
                     legal_moves.add(point);
                 }
             }
@@ -38,11 +32,10 @@ public class BasicRules implements IRules {
 
     @Override
     public void make_move(Board board, Point point, PlayerTypes player) {
-	 ArrayList<Point> flipping_cells = get_flipping_cells(board, point, player);
+        ArrayList<Point> flipping_cells = get_flipping_cells(board, point, player);
 
         board.set_cell(point, player);
-        for ( int i = 0; i < flipping_cells.size(); i++)
-        {
+        for (int i = 0; i < flipping_cells.size(); i++) {
             board.set_cell(flipping_cells.get(i), player);
         }
 
@@ -51,14 +44,12 @@ public class BasicRules implements IRules {
     @Override
     public PlayerTypes get_winner(Board board) {
 
-        Map<PlayerTypes,  Integer> total_cells = playerScores(board);
-        if (total_cells.get(PlayerTypes.PLAYER_TYPE_X) == total_cells.get(PlayerTypes.PLAYER_TYPE_O))
-        {
+        Map<PlayerTypes, Integer> total_cells = playerScores(board);
+        if (total_cells.get(PlayerTypes.PLAYER_TYPE_X) == total_cells.get(PlayerTypes.PLAYER_TYPE_O)) {
             return PlayerTypes.PLAYER_TYPE_NONE;
         }
 
-        if (total_cells.get(PlayerTypes.PLAYER_TYPE_X) > total_cells.get(PlayerTypes.PLAYER_TYPE_O))
-        {
+        if (total_cells.get(PlayerTypes.PLAYER_TYPE_X) > total_cells.get(PlayerTypes.PLAYER_TYPE_O)) {
             return PlayerTypes.PLAYER_TYPE_X;
         }
         return PlayerTypes.PLAYER_TYPE_O;
@@ -66,24 +57,21 @@ public class BasicRules implements IRules {
 
     /**
      * getting flippinf cells
-     * @param board the board
-     * @param point the point
+     *
+     * @param board  the board
+     * @param point  the point
      * @param player the player
      * @return the point
      */
-    private ArrayList<Point> get_flipping_cells(Board board, Point point, PlayerTypes player)
-    {
+    private ArrayList<Point> get_flipping_cells(Board board, Point point, PlayerTypes player) {
         ArrayList<Point> flipping_points = new ArrayList<>();
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                if ((0 == i) && (0 == j))
-                {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if ((0 == i) && (0 == j)) {
                     continue;
                 }
 
-			ArrayList<Point> points_to_add = get_flipping_cells(board, point, player,new Point(i, j));
+                ArrayList<Point> points_to_add = get_flipping_cells(board, point, player, new Point(i, j));
                 flipping_points.addAll(points_to_add);
             }
         }
@@ -93,32 +81,28 @@ public class BasicRules implements IRules {
 
     /**
      * getting flipping
-     * @param board the board
-     * @param point the point
-     * @param player the player
+     *
+     * @param board     the board
+     * @param point     the point
+     * @param player    the player
      * @param direction the direction
      * @return the point
      */
 
-    private ArrayList<Point> get_flipping_cells(Board board, Point point,  PlayerTypes player, Point direction)
-    {
-        PlayerTypes[][] cells = board.get_cells();
+    private ArrayList<Point> get_flipping_cells(Board board, Point point, PlayerTypes player, Point direction) {
         ArrayList<Point> points = new ArrayList<>();
-        Point current_point = new Point (point.getX() + direction.getX(),point.getY() + direction.getY());
+        Point current_point = new Point(point.getX() + direction.getX(), point.getY() + direction.getY());
         boolean found_keen = false;
 
-        for (; board.is_in_board(current_point);  current_point = new Point (current_point.getX() + direction.getX(),
-                current_point.getY() + direction.getY()))
-        {
-		 PlayerTypes cell = /*cells.get(current_point.getX()).get(current_point.getY())*/board.getCell(current_point);
+        for (; board.is_in_board(current_point); current_point = new Point(current_point.getX() + direction.getX(),
+                current_point.getY() + direction.getY())) {
+            PlayerTypes cell = board.getCell(current_point);
 
-            if (PlayerTypes.PLAYER_TYPE_NONE == cell)
-            {
-                return new ArrayList<Point>();
+            if (PlayerTypes.PLAYER_TYPE_NONE == cell) {
+                return new ArrayList<>();
             }
 
-            if (player == cell)
-            {
+            if (player == cell) {
                 found_keen = true;
                 break;
             }
@@ -126,8 +110,7 @@ public class BasicRules implements IRules {
             points.add(current_point);
         }
 
-        if (!found_keen)
-        {
+        if (!found_keen) {
             return new ArrayList<Point>();
         }
 
@@ -136,26 +119,25 @@ public class BasicRules implements IRules {
 
     /**
      * map of player scores
-     * @param board th board
+     *
+     * @param board the board
      * @return the total cells
      */
-    public  Map<PlayerTypes,  Integer> playerScores(Board board) {
-    Map<PlayerTypes,  Integer> total_cells = new TreeMap<>();
-    total_cells.put(PlayerTypes.PLAYER_TYPE_X, 0);
-    total_cells.put(PlayerTypes.PLAYER_TYPE_O, 0);
-    total_cells.put(PlayerTypes.PLAYER_TYPE_NONE,0);
-    int num_rows = board.get_num_rows();
-    int num_columns = board.get_num_columns();
-    PlayerTypes[][] cells = board.get_cells();
-    for ( int i = 0; i < num_rows; i++)
-    {
-        for ( int j = 0; j < num_columns; j++)
-        {
-            total_cells.put(cells[i][j] , total_cells.get(cells[i][j]) +1);
+    public Map<PlayerTypes, Integer> playerScores(Board board) {
+        Map<PlayerTypes, Integer> total_cells = new TreeMap<>();
+        total_cells.put(PlayerTypes.PLAYER_TYPE_X, 0);
+        total_cells.put(PlayerTypes.PLAYER_TYPE_O, 0);
+        total_cells.put(PlayerTypes.PLAYER_TYPE_NONE, 0);
+        int num_rows = board.get_num_rows();
+        int num_columns = board.get_num_columns();
+        PlayerTypes[][] cells = board.get_cells();
+        for (int i = 0; i < num_rows; i++) {
+            for (int j = 0; j < num_columns; j++) {
+                total_cells.put(cells[i][j], total_cells.get(cells[i][j]) + 1);
+            }
         }
-    }
 
-return total_cells;
-}
+        return total_cells;
+    }
 
 }

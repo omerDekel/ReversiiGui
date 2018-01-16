@@ -1,6 +1,7 @@
 package Resources;
 /**
- * Created by Omer Dekel on 09/01/2018.
+ * PlayerTypes.
+ * enum of the types of the players .
  */
     public enum PlayerTypes {
         PLAYER_TYPE_X,
