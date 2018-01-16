@@ -1,15 +1,21 @@
-package Resources;
+package GraphicDisplay;
+import Resources.*;
 import javafx.scene.paint.Color;
 
 /**
  * Created by Omer Dekel on 13/01/2018.
  */
-public class GuiPlayer implements IPlayer{
+public class GuiPlayer implements IPlayer {
     public String getM_name() {
         return m_name;
     }
 
     private String m_name;
+
+    public Color getColor() {
+        return color;
+    }
+
     private Color color;
     private PlayerTypes m_player_type;
 

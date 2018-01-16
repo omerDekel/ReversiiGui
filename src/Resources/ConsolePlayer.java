@@ -26,14 +26,6 @@ public class ConsolePlayer implements IPlayer{
         Scanner sc = new Scanner(System.in);
         x = sc.nextInt();
         y = sc.nextInt();
-        /*while (std::cin.fail()) {
-        std:: cout << "ERROR,cannot enter a letter!"<<std::endl ;
-        std:: cout << m_name << ", please insert x y: " ;
-        std:: cin.clear();
-        std::cin.ignore(256,'\n');
-        std::cin >> x >> y;*/
-    //}
-
         return new Point(x, y);
     }
 

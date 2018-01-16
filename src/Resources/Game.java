@@ -1,5 +1,9 @@
 package Resources;
 
+import GraphicDisplay.GuiPlayer;
+import GraphicDisplay.Listener;
+import GraphicDisplay.Notifier;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Omer Dekel on 09/01/2018.
  */
-public class Game implements Notifier{
+public class Game implements Notifier {
     private  List<Listener> listeners = new ArrayList<>();
     private List<GuiPlayer> m_players = new ArrayList<>();
     private Board m_board;
@@ -17,6 +21,22 @@ public class Game implements Notifier{
 	private boolean last_player_skipped ;
 
     /**
+     * consructor
+     * @param board the board
+     * @param players the players
+     * @param displayer the displayer
+     * @param rules the rules
+     */
+    public Game(Board board, ArrayList<GuiPlayer> players, IDisplayer displayer, IRules rules) {
+        this.m_board = board;
+        this.m_displayer = displayer;
+        this.m_rules = rules;
+        this.m_players = players;
+        current_player_index = 0;
+        last_player_skipped = false;
+    }
+
+    /**
      * getting the current index
      * @return current_player_index
      */
@@ -24,70 +44,54 @@ public class Game implements Notifier{
         return current_player_index;
     }
 
-    /**
-     * consructor
-     * @param board the board
-     * @param players the players
-     * @param displayer the displayer
-     * @param rules the rules
-     */
-    Game(Board board, ArrayList<GuiPlayer> players, IDisplayer displayer, IRules rules) {
-        this.m_board = board;
-        this.m_displayer = displayer;
-        this.m_rules = rules;
-        this.m_players = players;
-        /*m_players.add(player_1);
-        m_players.add(player_2);*/
-        current_player_index = 0;
-        last_player_skipped = false;
-
-    }
 
     /**
-     * run ths game
+     * run ths game by the point it got .
      * @param point the point
      */
-    public void run(Point point/*, Board board*/) {
-        System.out.println("run: x is "+point.getX());
-        System.out.println("run: y is"+point.getY());
-        //boolean last_player_skipped = false;
-        /*for (;; current_player_index = (current_player_index + 1) % m_players.size())
-        {*/
+    public void run(Point point) {
         IPlayer current_player = m_players.get(current_player_index);
-
 		ArrayList<Point> available_moves = m_rules.get_legal_moves(m_board, current_player.get_player_type());
-		for (int i = 0 ; i < available_moves.size(); i++) {
-            System.out.println("available move: "+available_moves.get(i).getX()+" "+ available_moves.get(i).getY());
+		if (available_moves.isEmpty()) {
+		    if (last_player_skipped) {
+                Notify();
+                m_displayer.display_game_over(m_rules.get_winner(m_board));
+                return;
+            }
+            last_player_skipped = true;
+            current_player_index = (current_player_index + 1) % m_players.size();
+            current_player = m_players.get(current_player_index);
+            //CHECK YHE NEXT PLAYER IF THERE'S NO MOVE GAME OVER
+            available_moves = m_rules.get_legal_moves(m_board, current_player.get_player_type());
+            if (available_moves.isEmpty()) {
+                Notify();
+                m_displayer.display_game_over(m_rules.get_winner(m_board));
+                return;
+            }
+            Notify();
+            return;
         }
-            if (!available_moves.isEmpty()) {
-                if (IsThere(point, available_moves)) {
-                    System.out.println("is there");
-                    /*if (this.last_player_skipped) {
-                        //break;
-                        //m_displayer.display_game_over(m_rules.get_winner(board));
-                        //m_displayer.display(board);
-                        return;
-
-                    } else {
-                        this.last_player_skipped = true;
-                    }*/
-                    //continue;
-                    m_rules.make_move(m_board, point, current_player.get_player_type());
-                    current_player_index = (current_player_index + 1) % m_players.size();
+        if (IsThere(point, available_moves)) {
+            m_rules.make_move(m_board, point, current_player.get_player_type());
+            current_player_index = (current_player_index + 1) % m_players.size();
+            //CHECK THE NEXT PLAYER, IF THERE'S NO MOVES CONTINUE TO THE NEXT PLAYER .
+            current_player = m_players.get(current_player_index);
+            available_moves = m_rules.get_legal_moves(m_board, current_player.get_player_type());
+            if (available_moves.isEmpty()) {
+                last_player_skipped = true;
+                current_player_index = (current_player_index + 1) % m_players.size();
+                current_player = m_players.get(current_player_index);
+                available_moves = m_rules.get_legal_moves(m_board, current_player.get_player_type());
+                if (available_moves.isEmpty()) {
                     Notify();
-                }
-            } else {
-                if (last_player_skipped) {
+                    m_displayer.display_game_over(m_rules.get_winner(m_board));
                     return;
                 }
-                this.last_player_skipped = true;
             }
-        //m_displayer.display(m_board)
-                //Point point;
-            /*do
-            {
-            } while (available_moves.contains(point));*/
-                //point = current_player.get_move(m_rules, m_board);
+
+        }
+        Notify();
+
     }
 
     /**
@@ -132,6 +136,10 @@ public class Game implements Notifier{
     public void removeListener(Listener l) {
 
     }
+
+    /**
+     * notify
+     */
     private void Notify() {
                 List<Listener> listeners = new ArrayList<Listener>(this.listeners);
         // Notify all listeners about a hit event:
@@ -140,10 +148,19 @@ public class Game implements Notifier{
         }
 
     }
+
+    /**
+     * current player.
+     * @return the current player.
+     */
     public GuiPlayer CurrentPlayer() {
         return m_players.get(current_player_index);
     }
 
+    /**
+     * getting list of players
+     * @return the list
+     */
     public List<GuiPlayer> getM_players() {
         return m_players;
     }

@@ -10,29 +10,16 @@ import static Resources.PlayerTypes.PLAYER_TYPE_X;
  * Created by Omer Dekel on 09/01/2018.
  */
 public class Board {
-    //private ArrayList<ArrayList<PlayerTypes>> CellMatrix =  new ArrayList();
 private PlayerTypes [][] CellMatrix;
     public Board(int size) {
         CellMatrix = new PlayerTypes[size][size];
         for (int i = 0; i < size; i++) {
-            //ArrayList<PlayerTypes> row = new ArrayList<>();//CellMatrix.get(i);
             for (int j = 0; j < size; j++) {
-                //row.add(j, PlayerTypes.PLAYER_TYPE_NONE);
                 CellMatrix[i][j] = PlayerTypes.PLAYER_TYPE_NONE;
             }
-            //CellMatrix.add(i, row);
         }
 
         Point center = new Point(size / 2 - 1, size / 2 - 1);
-
-        /*CellMatrix.get(center.getY()).set(center.getX(), PlayerTypes.PLAYER_TYPE_O);
-        CellMatrix.get(center.getY() + 1).set(center.getX() + 1, PlayerTypes.PLAYER_TYPE_O);
-        CellMatrix.get(center.getY() + 1).set(center.getX(), PlayerTypes.PLAYER_TYPE_X);
-        CellMatrix.get(center.getY()).set(center.getX() + 1, PlayerTypes.PLAYER_TYPE_X);
-        /*CellMatrix.get(1).set(0, PlayerTypes.PLAYER_TYPE_O);
-        CellMatrix.get(2).set(0,PlayerTypes.PLAYER_TYPE_O);
-        CellMatrix.get(3).set(0, PlayerTypes.PLAYER_TYPE_O);
-        CellMatrix.get(2).set(1,PlayerTypes.PLAYER_TYPE_O);*/
         CellMatrix[center.getX()][center.getY()] = PLAYER_TYPE_O;
         CellMatrix[center.getX() + 1][center.getY() + 1] = PLAYER_TYPE_O;
         CellMatrix[center.getX() + 1][center.getY()] = PLAYER_TYPE_X;

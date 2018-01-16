@@ -1,5 +1,7 @@
-package Resources;
+package GraphicDisplay;
 
+import GraphicDisplay.Listener;
+import Resources.Game;
 import javafx.scene.control.Label;
 
 /**

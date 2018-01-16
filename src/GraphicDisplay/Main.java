@@ -1,4 +1,4 @@
-package sample;
+package GraphicDisplay;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         primaryStage.setTitle("Reversy");
         Scene scene = new Scene(root, 300, 275);
         //scene.getStylesheets().add(getClass().getResource("Application.css").toExternalForm());

@@ -50,23 +50,8 @@ public class BasicRules implements IRules {
 
     @Override
     public PlayerTypes get_winner(Board board) {
-	 /*int num_rows = board.get_num_rows();
-	 int num_columns = board.get_num_columns();
-        PlayerTypes[][] cells = board.get_cells();*/
 
         Map<PlayerTypes,  Integer> total_cells = playerScores(board);
-        /*total_cells.put(PlayerTypes.PLAYER_TYPE_X, 0);
-        total_cells.put(PlayerTypes.PLAYER_TYPE_O, 0);
-        total_cells.put(PlayerTypes.PLAYER_TYPE_NONE,0);
-
-        for ( int i = 0; i < num_rows; i++)
-        {
-            for ( int j = 0; j < num_columns; j++)
-            {
-                total_cells.put(cells[i][j] , total_cells.get(cells[i][j]) +1);
-            }
-        }*/
-
         if (total_cells.get(PlayerTypes.PLAYER_TYPE_X) == total_cells.get(PlayerTypes.PLAYER_TYPE_O))
         {
             return PlayerTypes.PLAYER_TYPE_NONE;

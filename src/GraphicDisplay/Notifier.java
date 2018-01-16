@@ -1,4 +1,6 @@
-package Resources;
+package GraphicDisplay;
+
+import GraphicDisplay.Listener;
 
 /**
  * Created by Omer Dekel on 15/01/2018.
