@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class Settings  extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GridPane root = FXMLLoader.load(getClass().getResource("Sett.fxml"));
+        GridPane root = FXMLLoader.load(getClass().getClassLoader().getResource("GraphicDisplay/Sett.fxml"));
         primaryStage.setTitle("Settings");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();

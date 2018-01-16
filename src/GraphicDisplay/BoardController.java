@@ -11,11 +11,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import javafx.scene.paint.Color;
+
 /**
  * Created by Omer Dekel on 12/01/2018.
  */
@@ -23,18 +26,19 @@ public class BoardController implements Initializable {
     @FXML
     private HBox root;
     @FXML
-            private Label currentPlayer;
+    private Label currentPlayer;
     @FXML
-            private Label scorePlayer1;
+    private Label scorePlayer1;
     @FXML
-            private Label scorePlayer2;
+    private Label scorePlayer2;
     private ArrayList<GuiPlayer> players = new ArrayList<>();
-    private Color color1;
-    private Color color2;
+    private Color color1 = Color.WHITE;
+    private Color color2 = Color.BLACK;
     private Board board;
     private GuiPlayer player1;
     private GuiPlayer player2;
     private int size;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         readingSettingsFile();
@@ -43,7 +47,7 @@ public class BoardController implements Initializable {
         players.add(player2);
         GuiDisplayer displayer = new GuiDisplayer();
         BasicRules rules = new BasicRules();
-        Game game = new Game(board,players,displayer, rules);
+        Game game = new Game(board, players, displayer, rules);
         GuiBoard guiBoard = new GuiBoard(board, game, color1, color2);
         scorePlayer1.setText("2");
         scorePlayer2.setText("2");
@@ -54,7 +58,7 @@ public class BoardController implements Initializable {
         guiBoard.setPrefWidth(400);
         guiBoard.setPrefHeight(400);
         guiBoard.setAlignment(Pos.CENTER);
-        guiBoard.setPadding(new Insets(40,40,40,40));
+        guiBoard.setPadding(new Insets(40, 40, 40, 40));
         root.getChildren().add(0, guiBoard);
         guiBoard.draw();
     }
@@ -63,9 +67,11 @@ public class BoardController implements Initializable {
      * reading from the setting.
      */
     public void readingSettingsFile() {
-        try {
-               BufferedReader bufferedReader = new BufferedReader(new FileReader("settings.txt"));
-               String lineFromFile = bufferedReader.readLine();
+        File file = new File("settings.txt");
+        if (file.exists()) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader("settings.txt"));
+                String lineFromFile = bufferedReader.readLine();
                 if (null == lineFromFile) {
                     throw new Exception("there's no line in this file");
                 }
@@ -73,26 +79,32 @@ public class BoardController implements Initializable {
                 size = Integer.parseInt(settingsChoices[3]);
                 color1 = Color.web(settingsChoices[0]);
                 color2 = Color.web(settingsChoices[1]);
-                if(settingsChoices[2].equals("PLAYER 1")) {
-                    player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_O, settingsChoices[0],color1 );
+                if (settingsChoices[2].equals("PLAYER 1")) {
+                    player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_O, settingsChoices[0], color1);
                     player2 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X, settingsChoices[1], color2);
                     currentPlayer.setText(settingsChoices[0]);
-                }  else {
-                    player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X, settingsChoices[1],color2 );
+                } else {
+                    player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X, settingsChoices[1], color2);
                     player2 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_O, settingsChoices[0], color1);
                     currentPlayer.setText(settingsChoices[1]);
                 }
                 bufferedReader.close();
-        } catch (Exception e) {
+            } catch (Exception e) {
+                currentPlayer.setText("White");
+                this.size = 8;
+                player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_O, "White", color1);
+                player2 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X, "Black", color2);
+                System.out.println("couldnt read file");
+            }
+        } else {
             currentPlayer.setText("White");
             this.size = 8;
-            player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_O, "White", Color.WHITE);
-            player2 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X,"Black", Color.BLACK);
-            System.out.println("couldnt read file");
+            player1 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_O, "White", color1);
+            player2 = new GuiPlayer(PlayerTypes.PLAYER_TYPE_X, "Black", color2);
         }
 
     }
 
-    }
+}
 
 

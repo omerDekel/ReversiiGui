@@ -15,7 +15,7 @@ public class GameScene{
      */
     public void start(Stage primaryStage) {
         try {
-            HBox root = (HBox) FXMLLoader.load(getClass().getResource("../GraphicDisplay/ReversiFXML.fxml"));
+            HBox root = (HBox) FXMLLoader.load(getClass().getClassLoader().getResource("GraphicDisplay/ReversiFXML.fxml"));
             primaryStage.setTitle("Reversi");
             primaryStage.setScene(new Scene(root, 650, 650));
             primaryStage.show();

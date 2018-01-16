@@ -27,7 +27,7 @@ public class GuiBoard extends GridPane {
         m_game = game;
         this.board = board;
         FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("../GraphicDisplay/BoardFXML.fxml"));
+                FXMLLoader(getClass().getClassLoader().getResource("GraphicDisplay/BoardFXML.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

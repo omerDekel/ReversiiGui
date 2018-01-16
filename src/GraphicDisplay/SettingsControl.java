@@ -105,13 +105,9 @@ public void initialize(){}
                 }
                 settingsChoices = lineFromFile.split(",");
                 boardSize.setValue(settingsChoices[3]);
-                //boardSize.setItems(boardSizes);
                 player1Color.setValue(settingsChoices[0]);
-                //player1Color.setItems(colors1);
                 player2Color.setValue(settingsChoices[1]);
-                //player2Color.setItems(colors2);
                 whoStarts.setValue(settingsChoices[2]);
-                //whoStarts.setItems(players);
                 bufferedReader.close();
             }
         } catch (Exception e) {

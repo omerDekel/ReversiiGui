@@ -13,7 +13,6 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         primaryStage.setTitle("Reversy");
         Scene scene = new Scene(root, 300, 275);
-        //scene.getStylesheets().add(getClass().getResource("Application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
